@@ -186,17 +186,17 @@ class NamespaceConfig(object):
         """Add an included and possibly renamed non-wildcard Namespace."""
         src_name = namespace.source_name
         target_name = namespace.dest_name
-        src_names = self._reverse_plain.setdefault(target_name, set())
-        src_names.add(src_name)
-        if len(src_names) > 1:
-            # Another source namespace is already mapped to this target
-            existing_src = (src_names - set([src_name])).pop()
-            raise errors.InvalidConfiguration(
-                "Multiple namespaces cannot be combined into one target "
-                "namespace. Trying to map '%s' to '%s' but there already "
-                "exists a mapping from '%s' to '%s'"
-                % (src_name, target_name, existing_src, target_name)
-            )
+        # src_names = self._reverse_plain.setdefault(target_name, set())
+        # src_names.add(src_name)
+        # if len(src_names) > 1:
+        #     # Another source namespace is already mapped to this target
+        #     existing_src = (src_names - set([src_name])).pop()
+        #     raise errors.InvalidConfiguration(
+        #         "Multiple namespaces cannot be combined into one target "
+        #         "namespace. Trying to map '%s' to '%s' but there already "
+        #         "exists a mapping from '%s' to '%s'"
+        #         % (src_name, target_name, existing_src, target_name)
+        #     )
 
         self._plain[src_name] = namespace
         src_db, _ = src_name.split(".", 1)
@@ -406,13 +406,13 @@ def _validate_namespaces(namespaces):
             )
         target1 = namespaces[source1].dest_name
         target2 = namespaces[source2].dest_name
-        if target1 == target2:
-            raise errors.InvalidConfiguration(
-                "Multiple namespaces cannot be combined into one target "
-                "namespace. Trying to map '%s' to '%s' but '%s' already "
-                "corresponds to '%s' in the target system."
-                % (source2, target2, source1, target1)
-            )
+        # if target1 == target2:
+        #     raise errors.InvalidConfiguration(
+        #         "Multiple namespaces cannot be combined into one target "
+        #         "namespace. Trying to map '%s' to '%s' but '%s' already "
+        #         "corresponds to '%s' in the target system."
+        #         % (source2, target2, source1, target1)
+        #     )
         if wildcards_overlap(target1, target2):
             LOG.warning(
                 "Multiple namespaces cannot be combined into one target "

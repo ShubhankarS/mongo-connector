@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 3.1.2
+-------------
+
+- Support many to one namespace mapping
+
 Version 3.1.1
 -------------
 
